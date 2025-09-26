@@ -1,0 +1,596 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Crypto Signals</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content="Crypto signals promt">
+  <meta property="og:description" content="Created by Only_SoN. free crypto signals, promt">
+  <meta property="og:image" content="https://www.bing.com/th/id/OIP.ZFgic_pTv0NFsH9jStmf-wHaHa?w=182&h=211&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2">
+  <meta property="og:url" content="https://capitalnest.github.io/Cryptopips.ng">
+  <meta property="og:type" content="website">
+
+  <!-- For Twitter (optional but recommended) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crypto signal promt">
+  <meta name="twitter:description" content="Created by Only_SoN. free crypto signals, promt.">
+  <meta name="twitter:image" content="https://www.bing.com/th/id/OIP.ZFgic_pTv0NFsH9jStmf-wHaHa?w=182&h=211&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2">
+</head>
+
+<meta name="description" content="Beautiful crypto signal prompt manager — copy prompts to clipboard and save to your dashboard." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔮</text></svg>">
+<style>
+  :root{
+    --bg1:#0f1226;
+    --bg2:#071429;
+    --glass: rgba(255,255,255,0.06);
+    --glass-2: rgba(255,255,255,0.04);
+    --accent1: #7b5cff;
+    --accent2: #00e0a8;
+    --muted: rgba(255,255,255,0.6);
+    --glass-border: rgba(255,255,255,0.08);
+    --card-radius: 18px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    min-height:100%;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(123,92,255,0.12), transparent 8%),
+                radial-gradient(900px 400px at 90% 90%, rgba(0,224,168,0.06), transparent 8%),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    color: #eaf0ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+  }
+
+  /* page frame */
+  .wrap{
+    width:100%;
+    max-width:1200px;
+    display:grid;
+    grid-template-columns: 420px 1fr;
+    gap:22px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .wrap{grid-template-columns:1fr; padding:0 8px;}
+  }
+
+  /* left hero card */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: var(--card-radius);
+    padding:26px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 1px solid var(--glass-border);
+    position:relative;
+    overflow:hidden;
+    min-height:380px;
+  }
+  .logo-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .logo{
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:20px;box-shadow:0 6px 20px rgba(64,30,140,0.28);
+  }
+  .title{
+    font-size:18px;font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{font-size:13px;color:var(--muted);margin-top:4px;max-width:300px;line-height:1.25}
+
+  .hero-visual{
+    margin-top:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:14px;
+    padding:14px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .prompt-card{
+    display:flex;flex-direction:column;gap:10px;width:100%;
+  }
+  .prompt-name{
+    font-weight:600;font-size:15px;
+    color:#fff;
+    display:flex;align-items:center;gap:8px;
+  }
+  .hidden-preview{
+    font-size:13px;color:var(--muted);
+    padding:10px 12px;border-radius:10px;background:linear-gradient(180deg,var(--glass),var(--glass-2));
+    border:1px solid rgba(255,255,255,0.02);
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .hidden-preview .dots{
+    opacity:0.85;
+    letter-spacing:6px;
+    color:rgba(255,255,255,0.18);
+    font-weight:700;
+    font-size:20px;
+  }
+
+  .controls{display:flex;gap:10px;align-items:center}
+  .btn{
+    appearance:none;border:0;padding:12px 14px;border-radius:12px;cursor:pointer;font-weight:700;
+    display:inline-flex;align-items:center;gap:10px;justify-content:center;
+    box-shadow:0 6px 18px rgba(7,14,40,0.5);
+    transition:transform .14s ease, box-shadow .14s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#021622;
+  }
+  .btn-ghost{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+    padding:10px 12px;font-weight:600;
+  }
+
+  .meta-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+  .chip{
+    padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted);
+    border:1px solid rgba(255,255,255,0.02)
+  }
+
+  /* right side dashboard */
+  .dash{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: var(--card-radius);
+    padding:18px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 1px solid var(--glass-border);
+    min-height:380px;
+    display:flex;flex-direction:column;
+  }
+  .dash-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+  .dash-title{font-weight:700;font-size:15px}
+  .dash-sub{font-size:13px;color:var(--muted)}
+  .dash-body{overflow:auto;padding-right:6px;flex:1}
+
+  .saved-list{display:flex;flex-direction:column;gap:12px}
+  .saved-item{
+    padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.02);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .item-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .item-meta{font-size:13px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+  .item-actions{display:flex;gap:8px;align-items:center}
+
+  .tiny{font-size:12px;color:var(--muted)}
+  .reveal-box{background:rgba(0,0,0,0.15);padding:10px;border-radius:10px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-size:13px;color:#dfeaff;white-space:pre-wrap;line-height:1.3}
+
+  /* toast */
+  .toast{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:linear-gradient(90deg,var(--accent2),var(--accent1));
+    color:#021622;padding:12px 16px;border-radius:12px;font-weight:700;box-shadow:0 12px 40px rgba(10,6,50,0.5);display:inline-flex;align-items:center;gap:10px;
+    z-index:1000;opacity:0;pointer-events:none;transition:all .28s cubic-bezier(.2,.9,.22,1);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
+  /* subtle animated background orbs */
+  .orb{
+    position:absolute;border-radius:50%;filter:blur(32px);opacity:0.12;
+  }
+  .orb.a{width:340px;height:340px;left:-80px;top:-80px;background:linear-gradient(90deg,var(--accent1),transparent)}
+  .orb.b{width:260px;height:260px;right:-60px;bottom:-60px;background:linear-gradient(90deg,var(--accent2),transparent)}
+
+  /* footer note */
+  .note{margin-top:12px;color:var(--muted);font-size:13px;text-align:center}
+
+  /* tiny responsive tweaks */
+  @media (max-width:520px){
+    .hero{padding:18px} .dash{padding:14px}
+    .logo{width:48px;height:48px}
+  }
+
+</style>
+</head>
+<body>
+  <div class="wrap" role="main" aria-label="SignalSmith crypto prompt manager">
+    <div class="hero" aria-hidden="false">
+      <div class="orb a" aria-hidden="true"></div>
+      <div class="orb b" aria-hidden="true"></div>
+
+      <div class="logo-row">
+        <div class="logo">SS</div>
+        <div>
+          <div class="title">SignalSmith</div>
+          <div class="subtitle">Pro AI prompt manager for crypto signals — copy secure prompts without showing raw content. Mobile-first & extremely beautiful.</div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="false">
+        <div class="prompt-card" role="region" aria-label="Prompt actions">
+          <div class="prompt-name">SMC — Break & Retest + Liquidity Sweep <span style="font-size:12px;color:var(--muted);font-weight:600">v2.6</span></div>
+
+          <div class="hidden-preview" title="Prompt hidden — click Copy to copy into your dashboard">
+            <div>
+              <div style="font-weight:700;font-size:13px">“BYBIT Top Gainers — Low-Volume Mode”</div>
+              <div class="tiny" style="margin-top:6px">Prompt content is hidden here for privacy. Use the Copy button to export it.</div>
+            </div>
+            <div class="dots" aria-hidden="true">•••</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="chip">Scope: BYBIT USDT-M Futures</div>
+            <div class="chip">Mode: Low-Vol</div>
+            <div class="chip">Refresh: 4h</div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;margin-top:6px;align-items:center">
+            <div class="controls">
+              <button id="copyBtn" class="btn btn-primary" aria-label="Copy prompt to clipboard">
+                <!-- copy icon -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 9H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4" stroke="#021622" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="3" width="11" height="11" rx="2" stroke="#021622" stroke-width="1.6"/></svg>
+                Copy Prompt
+              </button>
+
+              <button id="copyAndOpenBtn" class="btn btn-ghost" title="Copy & open Dashboard (saved)">
+                Save to Dashboard
+              </button>
+            </div>
+
+            <div style="display:flex;flex-direction:column;align-items:flex-end">
+              <div class="tiny">Prompt Size</div>
+              <div style="font-weight:800;font-size:14px">Advanced</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="chip">COPY hides text</div>
+          <div class="chip">Saved locally</div>
+        </div>
+        <div class="note">Tip: Use the dashboard to view, reveal or download saved prompts. Prompts are stored on your device only.</div>
+      </div>
+    </div>
+
+    <aside class="dash" aria-label="Dashboard">
+      <div class="dash-head">
+        <div>
+          <div class="dash-title">Dashboard</div>
+          <div class="dash-sub">Saved prompts (local)</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="clearAll" class="btn btn-ghost" title="Clear all saved prompts">Clear All</button>
+          <button id="exportAll" class="btn btn-primary" title="Export all prompts as text">Export</button>
+        </div>
+      </div>
+
+      <div class="dash-body" id="dashBody" tabindex="0">
+        <div class="saved-list" id="savedList">
+          <div style="color:var(--muted);font-size:13px">No saved prompts yet — copy a prompt to begin.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="tiny">Local-only storage · No data leaves your device unless you export it</div>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+<script>
+/* ========== Hidden prompt content (exact user-provided prompt) ========== */
+const PROMPT_TEXT = `Smart Money Concepts (SMC) — Break & Retest + Liquidity Sweep Strategy v2.6 — BYBIT Top Gainers Only (Low-Volume Mode)”
+(By Ekan the Trader)
+
+Act as a professional crypto trading scanner using the Smart Money Concepts (SMC) — Break & Retest + Liquidity Sweep strategy. Follow ALL rules strictly and always return both BUY and SELL signals.
+⸻
+🔧 Scope Lock (Very Important)
+• Exchange: BYBIT USDT-M Futures only ✅
+• Universe: Only tokens on BYBIT “Top Gainers” (Futures) at scan time ✅
+• Exclude Bybit & non-BYBIT markets ✅
+• Low-Volume Restriction: Return only pairs where minimum order size ≤ 5 USDT ✅
+⸻
+🔄 Step 1: Market Trend Analysis
+Determine dominant trend using:
+1. BTC 4H EMA → 50>200 = Bullish, 50<200 = Bearish
+2. Altcoin Market Cap Trend → Rising or Falling
+3. BTC Dominance → Up = Bearish for alts, Down = Bullish
+Output Format:
+“BULLISH” or “BEARISH” + one-sentence rationale.
+⸻
+🎯 Step 2: Dual-Side Trade Setup Generation
+Always return both sides:
+• 12+ LONG setups ✅
+• 12+ SHORT setups ✅
+• No overlap between LONG and SHORT lists
+• No duplicates or reversals
+⸻
+✅ Mandatory Filters (Every Setup Must Pass)
+1. Trend alignment: 1H + 4H EMA match or confirmed swing structure
+2. Volume spike: ≥ 2× average at key OB/SR
+3. Liquidity event: rejection, sweep, or breakout from a visible liquidity zone
+4. Catalyst/hype: trending on socials, new listing, or narrative news
+5. Stochastic RSI: Oversold (LONG) / Overbought (SHORT) on 1H & 4H
+6. Execution: Entry must be executable now via market order
+7. Pairs: Altcoins/memecoins only (< $5B mcap); no BTC, ETH, SOL
+8. Listing gate: Must appear on MEXC Top Gainers (Futures) at scan time
+9. Low-volume compliance: Minimum order size ≤ 5 USDT ✅
+⸻
+📌 Output Format (Initial Scan)
+Header:
+• Scan Time (Africa/Lagos): YYYY-MM-DD HH:MM
+• Universe Source: MEXC Top Gainers (Futures)
+Then list only:
+• 12+ LONG pairs ✅
+• 12+ SHORT pairs ✅
+⚠️ Do NOT provide entry, TP, or SL yet. Wait for user screenshots.
+⸻
+⚠️ Disqualifiers
+Reject instantly if:
+• No clear volume confirmation ❌
+• Mid-range entries ❌
+• Counter-trend with no structure shift ❌
+• Daily volume < $20M ❌
+• Minimum order size > 5 USDT ❌
+• Not in MEXC Top Gainers ❌
+• Any non-MEXC markets ❌
+⸻
+✨ Special Notes
+• Prioritize strong social hype and fresh catalysts
+• Include at least 1 memecoin in each LONG & SHORT list
+• Refresh every 4 hours
+• LONG and SHORT lists must have completely different pairs
+• Only select tokens compatible with ≤ 5 USDT minimum size
+⸻
+🖼️ Screenshot Requirement (for Exact Levels)
+After providing the initial lists, the user must upload two screenshots per coin:
+• 4H timeframe → trend confirmation, liquidity zones, SL placement
+• 1H timeframe → sniper entry, TP targeting
+⸻
+🆕 Chapter — Global PIP-LOCK (ARIA Standard)
+
+When screenshots are provided, always apply fixed pip distances based on the ARIAUSDT reference.
+
+Reference Distances (Global Standard):
+• TP_PIPS = 165
+• SL_PIPS = 107
+
+How to Apply PIP-LOCK
+
+For any USDT pair:
+• If price ≥ 1.0000 → pip_size = 0.0001
+• If price < 1.0000 → pip_size = 0.00001
+• Always round prices to MEXC tick size while keeping exact pip distances.
+
+LONG Trades:
+• TP1 = Entry + (TP_PIPS × pip_size)
+• TP2 = TP1 (unless user requests multiple targets)
+• SL = Entry − (SL_PIPS × pip_size)
+
+SHORT Trades:
+• TP1 = Entry − (TP_PIPS × pip_size)
+• TP2 = TP1
+• SL = Entry + (SL_PIPS × pip_size)
+⸻
+📊 Example (PEOPLEUSDT)
+
+Entry = 0.02107
+• TP = 0.02107 + (165 × 0.00001) ≈ 0.02272 ✅
+• SL = 0.02107 − (107 × 0.00001) ≈ 0.01999 ✅
+
+Mode: PIP-LOCK 165/107
+⸻
+🚀 Action
+1. Scan MEXC USDT-M Futures Top Gainers
+2. Return 12+ LONG and 12+ SHORT pairs passing all filters
+3. Once screenshots are uploaded → output precise entry, TP1, TP2, SL using PIP-LOCK 165/107.`;
+
+const STORAGE_KEY = 'signalsmith_saved_prompts_v1';
+
+/* ========== UI helpers ========== */
+const toastEl = document.getElementById('toast');
+function showToast(text='Copied to clipboard') {
+  toastEl.textContent = text;
+  toastEl.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>toastEl.classList.remove('show'), 2200);
+}
+
+/* copy function and save to dashboard */
+async function copyPromptAndSave({openDashboard=false} = {}) {
+  try {
+    await navigator.clipboard.writeText(PROMPT_TEXT);
+    showToast('Prompt copied to clipboard');
+
+    // save to localStorage
+    const saved = loadSaved();
+    const timestamp = new Date().toISOString();
+    saved.unshift({
+      id: 'p_' + Math.random().toString(36).slice(2,9),
+      name: 'SMC — Break & Retest v2.6',
+      note: 'BYBIT Top Gainers — Low-Volume Mode',
+      createdAt: timestamp,
+      content: PROMPT_TEXT,
+    });
+    saveSaved(saved);
+    renderSaved();
+    if(openDashboard){
+      // focus dashboard
+      document.getElementById('dashBody').focus();
+    }
+  } catch (err) {
+    console.error(err);
+    showToast('Copy failed — allow clipboard access');
+  }
+}
+
+/* localStorage helpers */
+function loadSaved(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e){ return []; }
+}
+function saveSaved(arr){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+}
+
+/* render saved list */
+function renderSaved(){
+  const list = document.getElementById('savedList');
+  const saved = loadSaved();
+  list.innerHTML = '';
+  if(!saved.length){
+    list.innerHTML = '<div style="color:var(--muted);font-size:13px">No saved prompts yet — copy a prompt to begin.</div>';
+    return;
+  }
+
+  for(const item of saved){
+    const wrap = document.createElement('div');
+    wrap.className = 'saved-item';
+    wrap.setAttribute('data-id', item.id);
+
+    const header = document.createElement('div');
+    header.className = 'item-row';
+    header.innerHTML = `
+      <div>
+        <div style="font-weight:700">${escapeHtml(item.name)}</div>
+        <div class="item-meta">${escapeHtml(item.note)} · <span style="color:var(--muted)">${new Date(item.createdAt).toLocaleString()}</span></div>
+      </div>
+    `;
+
+    const actions = document.createElement('div');
+    actions.className = 'item-actions';
+    const revealBtn = document.createElement('button');
+    revealBtn.className = 'btn btn-ghost';
+    revealBtn.textContent = 'Reveal';
+    revealBtn.title = 'Reveal prompt content';
+    revealBtn.addEventListener('click', ()=> toggleReveal(item.id, wrap, item.content));
+
+    const downloadBtn = document.createElement('button');
+    downloadBtn.className = 'btn btn-primary';
+    downloadBtn.textContent = 'Download';
+    downloadBtn.title = 'Download prompt as .txt';
+    downloadBtn.addEventListener('click', ()=> downloadPrompt(item.name, item.content));
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn btn-ghost';
+    delBtn.textContent = 'Delete';
+    delBtn.addEventListener('click', ()=> {
+      if(confirm('Delete this saved prompt?')) {
+        deleteSaved(item.id);
+      }
+    });
+
+    actions.appendChild(revealBtn);
+    actions.appendChild(downloadBtn);
+    actions.appendChild(delBtn);
+
+    header.appendChild(actions);
+
+    wrap.appendChild(header);
+
+    list.appendChild(wrap);
+  }
+}
+
+/* reveal toggle — show/hide prompt content inside item wrapper */
+function toggleReveal(id, wrapper, content){
+  const existing = wrapper.querySelector('.reveal-box');
+  if(existing){
+    existing.remove();
+    return;
+  }
+  const box = document.createElement('pre');
+  box.className = 'reveal-box';
+  box.textContent = content;
+  wrapper.appendChild(box);
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+/* download as txt */
+function downloadPrompt(name, content){
+  const a = document.createElement('a');
+  const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+  a.href = URL.createObjectURL(blob);
+  a.download = (name || 'prompt') + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+}
+
+/* delete saved */
+function deleteSaved(id){
+  const arr = loadSaved().filter(x=>x.id !== id);
+  saveSaved(arr);
+  renderSaved();
+}
+
+/* export all to one file */
+function exportAll(){
+  const saved = loadSaved();
+  if(!saved.length){ alert('No saved prompts to export'); return; }
+  let out = '';
+  saved.forEach((s,i)=>{
+    out += `--- Prompt ${i+1} — ${s.name} (${s.createdAt}) ---\n\n${s.content}\n\n\n`;
+  });
+  const a = document.createElement('a');
+  const blob = new Blob([out], {type:'text/plain;charset=utf-8'});
+  a.href = URL.createObjectURL(blob);
+  a.download = 'signalsmith_export_' + new Date().toISOString().slice(0,10) + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+  showToast('Export started');
+}
+
+/* clear all */
+function clearAll(){
+  if(!confirm('Clear all saved prompts? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderSaved();
+}
+
+/* helper: escape html for safety when injecting */
+function escapeHtml(s){
+  return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* small init */
+document.getElementById('copyBtn').addEventListener('click', ()=> copyPromptAndSave({openDashboard:false}));
+document.getElementById('copyAndOpenBtn').addEventListener('click', ()=> copyPromptAndSave({openDashboard:true}));
+document.getElementById('exportAll').addEventListener('click', exportAll);
+document.getElementById('clearAll').addEventListener('click', clearAll);
+
+renderSaved();
+
+/* handle keyboard shortcut: Ctrl/Cmd+Shift+C to copy prompt silently */
+document.addEventListener('keydown', (e)=>{
+  if((e.ctrlKey || e.metaKey) && e.shiftKey && e.code === 'KeyC'){
+    e.preventDefault();
+    copyPromptAndSave();
+  }
+});
+
+</script>
+</body>
+</html>
